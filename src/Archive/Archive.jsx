@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { HabitContext } from "./HabitContext";
+import { HabitContext } from "../HabitContext";
 import Modal from "react-modal";
 
 export const Archive = () => {

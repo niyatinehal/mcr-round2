@@ -1,3 +1,12 @@
+
+:root{
+  --color1:#001B2E;
+  --color2:#294C60;
+  --color3:#ADB6C4;
+  --color4:#FFC49B;
+  --color5:#FFEFD3;
+}
+
 .App {
   text-align: center;
 }
@@ -26,6 +35,17 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.App .nav{
+  padding: 2px;
+  margin: 10px;
+  text-decoration: none;
+  color: var(--color5);
+}
+.App nav{
+  padding: 15px;
+  background:var(--color1);
 }
 
 @keyframes App-logo-spin {

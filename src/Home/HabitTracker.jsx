@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useState, useReducer } from "react";
-import { HabitContext } from "./HabitContext";
+import { HabitContext } from "../HabitContext";
 import Modal from "react-modal";
+
+import "./HabitTracker.css";
 
 const HabitTrackerApp = () => {
   const { habits, dispatch } = useContext(HabitContext);
@@ -87,13 +89,14 @@ const HabitTrackerApp = () => {
   };
 
   return (
-    <div>
+    <div className="page">
       <h1>Habit Tracker</h1>
       <button onClick={openAddDialog}>Add a new habit</button>
+      <hr></hr>
       <ul>
         {habits?.Habits?.map((habit) => (
           <li key={habit.id}>
-            <div>
+            <div className="Card">
               <strong>{habit.name}</strong>
               <button onClick={() => editHabit(habit)}>Edit</button>
               <button onClick={() => deleteHabit(habit.id)}>Delete</button>
@@ -106,62 +109,68 @@ const HabitTrackerApp = () => {
         ))}
       </ul>
       {showAddDialog && (
-        <div>
+        <div className="newTask">
           <h2>Add a new habit</h2>
           <form onSubmit={habitForm.id ? updateHabit : addHabit}>
+          <div className="inputForm">
             <label>
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={habitForm.name}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Goal:
-              <select
-                name="goal"
-                value={habitForm.goal}
-                onChange={handleInputChange}
-              >
-                <option value="10 days">10 days</option>
-                <option value="15 days">15 days</option>
-              </select>
-            </label>
-            <label>
-              Repeat:
-              <select
-                name="repeat"
-                value={habitForm.repeat}
-                onChange={handleInputChange}
-              >
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-              </select>
-            </label>
-            <label>
-              Start Date:
-              <select
-                name="startDate"
-                value={habitForm.startDate}
-                onChange={handleInputChange}
-              >
-                <option value="Today">Today</option>
-                <option value="Tomorrow">Tomorrow</option>
-              </select>
-            </label>
-            <label>
-              Time Of Day:
-              <select
-                name="timeOfDay"
-                value={habitForm.timeOfDay}
-                onChange={handleInputChange}
-              >
-                <option value="AnyTime">Any-Time</option>
-                <option value="afternoon">Afternoon</option>
-              </select>
-            </label>
+                Name:
+                <input
+                required
+                  type="text"
+                  name="name"
+                  value={habitForm.name}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Goal:
+                <select
+                  name="goal"
+                  value={habitForm.goal}
+                  onChange={handleInputChange}
+                >
+                  <option value="10 days">10 days</option>
+                  <option value="15 days">15 days</option>
+                </select>
+              </label>
+              <label>
+                Repeat:
+                <select
+                  name="repeat"
+                  value={habitForm.repeat}
+                  onChange={handleInputChange}
+                >
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                </select>
+              </label>
+              <label>
+                Start Date:
+                <select
+                  name="startDate"
+                  value={habitForm.startDate}
+                  onChange={handleInputChange}
+                >
+                  <option value="Today">Today</option>
+                  <option value="Tomorrow">Tomorrow</option>
+                </select>
+              </label>
+              <label>
+                Time Of Day:
+                <select
+                  name="timeOfDay"
+                  value={habitForm.timeOfDay}
+                  onChange={handleInputChange}
+                >
+                  <option value="AnyTime">Any-Time</option>
+                  <option value="afternoon">Afternoon</option>
+                </select>
+              </label>
+          </div>
+              
+            
+
             <button type="submit">{habitForm.id ? "Update" : "Add"}</button>
             <button type="button" onClick={closeAddDialog}>
               Cancel
