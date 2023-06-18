@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { Routes,Route, NavLink } from 'react-router-dom';
+import HabitTrackerApp from './HabitTracker';
+import { Archive } from './Archive';
+import { useContext } from 'react';
+import { HabitContext } from './HabitContext';
 
 function App() {
+  const{habits}=useContext(HabitContext);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to="/archive">Archive</NavLink>
+    <Routes>
+      <Route path='/' element={<HabitTrackerApp/>}/>
+      <Route path="/archive" element={<Archive/>}/>
+    </Routes>
     </div>
   );
 }
