@@ -98,7 +98,7 @@ const HabitTrackerApp = () => {
           <li key={habit.id}>
             <div className="Card">
               <strong>{habit.name}</strong>
-              <button onClick={() => editHabit(habit)}>Edit</button>
+              <button onClick={() => editHabit(habit)}><i class="fa-solid fa-pen-to-square"></i></button>
               <button onClick={() => deleteHabit(habit.id)}>Delete</button>
               {!habit.archived && (
                 <button onClick={() => archiveHabit(habit)}>Archive</button>
