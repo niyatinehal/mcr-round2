@@ -32,13 +32,24 @@ export const Archive = () => {
                 <div>
                   <h2>{selectedHabit.name}</h2>
                   <p>Goal: {selectedHabit.goal}</p>
+                  <p>Repeat: {selectedHabit.repeat}</p>
+                  <p>Start Date: {selectedHabit.startDate}</p>
+                  <p>Time of Day: {selectedHabit.timeOfDay}</p>
+                  {selectedHabit.archived && <p>This habit is archived.</p>}
+                  <button onClick={closeModal}>Close</button>
+                </div>
+              )}
+              {/* {selectedHabit && (
+                <div>
+                  <h2>{selectedHabit.name}</h2>
+                  <p>Goal: {selectedHabit.goal}</p>
                   <p>Frequency: {selectedHabit.frequency}</p>
                   <p>Start Date: {selectedHabit.startDate}</p>
                   <p>End Date: {selectedHabit.endDate}</p>
                   {selectedHabit.archived && <p>This habit is archived.</p>}
                   <button onClick={closeModal}>Close</button>
                 </div>
-              )}
+              )} */}
             </Modal>
           </li>
         ))}

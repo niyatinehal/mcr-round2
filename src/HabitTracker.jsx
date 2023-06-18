@@ -3,43 +3,6 @@ import { useState, useReducer } from "react";
 import { HabitContext } from "./HabitContext";
 import Modal from "react-modal";
 
-// const habitReducer = (state, action) => {
-//   switch (action.type) {
-//     case "ADD_HABIT":
-//       return {
-//         ...state,
-//         Habits:[...state.Habits,action.payload]
-//       };
-//     case "EDIT_HABIT":
-//       return state.map((habit) => {
-//         if (habit.id === action.payload.id) {
-//           return action.payload;
-//         }
-//         return habit;
-//       });
-//     case "DELETE_HABIT":
-//       return state.filter((habit) => habit.id !== action.payload);
-
-//     case "ARCHIVE_HABIT":{
-//       return {
-//         ...state,
-//         archivedHabits: [...state.archivedHabits, action.payload],
-//       };
-//         //  return state.map((habit)=>{
-//         //   if(habit.id===action.payload){
-//         //     return {...habit,archived:true }
-//         //   }else{
-//         //     return habit
-//         //   }
-//         // })
-//     }
-
-//     default:
-//       return state;
-
-//   }
-// };
-
 const HabitTrackerApp = () => {
   const { habits, dispatch } = useContext(HabitContext);
   console.log(habits);
@@ -49,10 +12,10 @@ const HabitTrackerApp = () => {
   const [selectedHabit, setSelectedHabit] = useState(null);
   const [habitForm, setHabitForm] = useState({
     name: "",
-    goal: "",
-    frequency: "",
-    startDate: "",
-    endDate: "",
+    goal: "10 days",
+    repeat: "Daily",
+    startDate: "Today",
+    timeOfDay: "Any-Time",
   });
   console.log(habits);
 
@@ -80,10 +43,10 @@ const HabitTrackerApp = () => {
     dispatch({ type: "ADD_HABIT", payload: newHabit });
     setHabitForm({
       name: "",
-      goal: "",
-      frequency: "",
-      startDate: "",
-      endDate: "",
+      goal: "10 days",
+      repeat: "Daily",
+      startDate: "Today",
+      timeOfDay: "Any-Time",
     });
     closeAddDialog();
   };
@@ -97,10 +60,10 @@ const HabitTrackerApp = () => {
     dispatch({ type: "EDIT_HABIT", payload: habitForm });
     setHabitForm({
       name: "",
-      goal: "",
-      frequency: "",
-      startDate: "",
-      endDate: "",
+      goal: "10 days",
+      repeat: "Daily",
+      startDate: "Today",
+      timeOfDay: "Any-Time",
     });
     closeAddDialog();
   };
@@ -139,12 +102,6 @@ const HabitTrackerApp = () => {
               )}
               <button onClick={() => openModal(habit)}>View Details</button>
             </div>
-            <div>
-              <p>Goal: {habit.goal}</p>
-              <p>Frequency: {habit.frequency}</p>
-              <p>Start Date: {habit.startDate}</p>
-              <p>End Date: {habit.endDate}</p>
-            </div>
           </li>
         ))}
       </ul>
@@ -163,39 +120,47 @@ const HabitTrackerApp = () => {
             </label>
             <label>
               Goal:
-              <input
-                type="text"
+              <select
                 name="goal"
                 value={habitForm.goal}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="10 days">10 days</option>
+                <option value="15 days">15 days</option>
+              </select>
             </label>
             <label>
-              Frequency:
-              <input
-                type="text"
-                name="frequency"
-                value={habitForm.frequency}
+              Repeat:
+              <select
+                name="repeat"
+                value={habitForm.repeat}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+              </select>
             </label>
             <label>
               Start Date:
-              <input
-                type="text"
+              <select
                 name="startDate"
                 value={habitForm.startDate}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="Today">Today</option>
+                <option value="Tomorrow">Tomorrow</option>
+              </select>
             </label>
             <label>
-              End Date:
-              <input
-                type="text"
-                name="endDate"
-                value={habitForm.endDate}
+              Time Of Day:
+              <select
+                name="timeOfDay"
+                value={habitForm.timeOfDay}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="AnyTime">Any-Time</option>
+                <option value="afternoon">Afternoon</option>
+              </select>
             </label>
             <button type="submit">{habitForm.id ? "Update" : "Add"}</button>
             <button type="button" onClick={closeAddDialog}>
@@ -209,9 +174,9 @@ const HabitTrackerApp = () => {
           <div>
             <h2>{selectedHabit.name}</h2>
             <p>Goal: {selectedHabit.goal}</p>
-            <p>Frequency: {selectedHabit.frequency}</p>
+            <p>Repeat: {selectedHabit.repeat}</p>
             <p>Start Date: {selectedHabit.startDate}</p>
-            <p>End Date: {selectedHabit.endDate}</p>
+            <p>Time of Day: {selectedHabit.timeOfDay}</p>
             {selectedHabit.archived && <p>This habit is archived.</p>}
             <button onClick={closeModal}>Close</button>
           </div>
